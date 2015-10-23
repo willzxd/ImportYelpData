@@ -1,5 +1,5 @@
 #Import Yelp Data To PostgreSQL
-2014
+Update: 2015.10.23
 ## Overview
 This repository helps you import most part of yelp acedemic data to your postgreSQL.
 
@@ -17,15 +17,15 @@ There are lost of instruction on the Internet.
 A simple instruction is here:
 
 Install with homebrew:
-`brew install postgresql -v`
+`$ brew install postgresql -v`
 
 Init psql:
-`initdb /usr/local/var/postgres -E utf8`
+`$ initdb /usr/local/var/postgres -E utf8`
 
 Run psql automatically:
 ```shell
-ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
-launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+$ ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+$ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 ```
 
 Run qsql:
@@ -46,14 +46,14 @@ Simple instruction
 
 Create a user:
 ```
-createuser username -P
+$ createuser username -P
 Enter password for new role:
 Enter it again:
 ```
 
 Create a database:
 ```
-createdb dbname -O username -E UTF8 -e
+$ createdb dbname -O username -E UTF8 -e
 ```
 
 ###Setup
@@ -62,5 +62,5 @@ Download this repo.
 You can set up the path of datafiles, db_username, db_password db_name and db_connection in run.sh
 
 ###Execution
-under the repo directory, execute ``` . run.sh```
+under the repo directory, execute ```$ . run.sh```
     
