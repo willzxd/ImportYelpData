@@ -23,8 +23,10 @@ Init psql:
 `initdb /usr/local/var/postgres -E utf8`
 
 Run psql automatically:
-```ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
-launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist```
+```shell
+ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+```
 
 Run qsql:
 
@@ -43,12 +45,16 @@ How to create a user: <http://www.postgresql.org/docs/9.2/static/app-createuser.
 Simple instruction
 
 Create a user:
-```createuser username -P
-# Enter password for new role:
-# Enter it again:```
+```
+createuser username -P
+Enter password for new role:
+Enter it again:
+```
 
 Create a database:
-```createdb dbname -O username -E UTF8 -e```
+```
+createdb dbname -O username -E UTF8 -e
+```
 
 ###Setup
 Download this repo.
