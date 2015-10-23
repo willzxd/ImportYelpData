@@ -47,8 +47,8 @@ Simple instruction
 Create a user:
 ```
 $ createuser username -P
-#Enter password for new role:
-#Enter it again:
+# Enter password for new role:
+# Enter it again:
 ```
 
 Create a database:
