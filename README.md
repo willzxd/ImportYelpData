@@ -30,7 +30,7 @@ $ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
 Run qsql:
 
-`pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start`
+`$ pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start`
 
 Also you can install a interface for psql. I recommand pgAdmin. You can find it here: <http://www.pgadmin.org> 
 
@@ -47,8 +47,8 @@ Simple instruction
 Create a user:
 ```
 $ createuser username -P
-Enter password for new role:
-Enter it again:
+#Enter password for new role:
+#Enter it again:
 ```
 
 Create a database:
