@@ -24,7 +24,7 @@ public class ImportReviewData {
 	public boolean importReview() {
 		BufferedReader reader = null;
 		try{
-			FileInputStream fileInputStream = new FileInputStream("/Users/will/Documents/workspace/ImportYelpData/src/main/resources/yelp_academic_dataset_review.json");
+			FileInputStream fileInputStream = new FileInputStream(System.getenv("REVIEW_PATH"));
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
 			reader = new BufferedReader(inputStreamReader);
 			String tempString = null;
@@ -75,7 +75,7 @@ class ImportReviewThread implements Runnable {
 			for (int i = 0; i < fields.length; i++) {
 				fields[i].setAccessible(true);
 				Object value = fields[i].get(r);
-				System.out.println(fields[i].getName());
+				//System.out.println(fields[i].getName());
 				if (fields[i].getName().equals("votes")) {
 					sqlwritter.insertReviewVotesTable(r.getReview_id(), ((votes) value).getFunny(), ((votes) value).getUseful(), ((votes) value).getCool());
 				}

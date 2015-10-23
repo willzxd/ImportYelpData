@@ -27,7 +27,7 @@ public class ImportUsersData {
 	public boolean importUsers() {
 		BufferedReader reader = null;
 		try{
-			FileInputStream fileInputStream = new FileInputStream("/Users/will/Documents/workspace/ImportYelpData/src/main/resources/yelp_academic_dataset_user.json");
+			FileInputStream fileInputStream = new FileInputStream(System.getenv("USERS_PATH"));
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
 			reader = new BufferedReader(inputStreamReader);
 			String tempString = null;

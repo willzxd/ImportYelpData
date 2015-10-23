@@ -24,7 +24,7 @@ private SQLWritter sqlwritter;
 	public boolean importBusiness() {
 		BufferedReader reader = null;
 		try{
-			FileInputStream fileInputStream = new FileInputStream("/Users/will/Documents/workspace/ImportYelpData/src/main/resources/yelp_academic_dataset_business.json");
+			FileInputStream fileInputStream = new FileInputStream(System.getenv("BUSINESS_PATH"));
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
 			reader = new BufferedReader(inputStreamReader);
 			String tempString = null;

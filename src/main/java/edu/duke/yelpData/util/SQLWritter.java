@@ -11,9 +11,10 @@ import java.sql.Statement;
  */
 public class SQLWritter {
 	Connection conn = null;
-	public static String DATABASE = "yelpdb";
-	public static String USER = "yelpdbuser";
-	public static String PASSWORD = "yelp";
+	public static String DATABASE = System.getenv("DB_NAME");
+	public static String USER = System.getenv("DB_USERNAME");
+	public static String PASSWORD = System.getenv("DB_PASSWORD");
+	public static String CONNECTION = System.getenv("DB_CONNECTION");
 
 	public SQLWritter() {
 		try { 
@@ -64,7 +65,7 @@ public class SQLWritter {
 		Statement statement;
 		try {
 			statement = conn.createStatement();
-			statement.executeUpdate("DROP TABLE IF EXISTS reviewvotes, review, tips, bneighborhoods, bcategories, business, elite, uservotes, friends, users");
+			statement.executeUpdate("DROP TABLE IF EXISTS reviewvotes, review, tips, bneighborhoods, bcategories, business, elite, uservotes, friends, users CASCADE");
 		}
 		catch (SQLException e) {
 			printSQLInformation(e);
@@ -144,7 +145,7 @@ public class SQLWritter {
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS uservotes " 
 					+ "(user_id varchar(255) REFERENCES users(user_id), "
 					+ "funny int, "
-					+ "userful int,"
+					+ "useful int,"
 					+ "cool int)");
 		}
 		catch (SQLException e) {
@@ -154,14 +155,14 @@ public class SQLWritter {
 		return true;
 	}
 	
-	public boolean insertUserVotesTable(String user_id, int funny, int userful, int cool) {
+	public boolean insertUserVotesTable(String user_id, int funny, int useful, int cool) {
 		Statement statement;
 		try {
 			statement = conn.createStatement();
 			statement.executeUpdate("INSERT INTO uservotes VALUES (" 
 					+ "'" + user_id +"',"
 					+ funny + ", "
-					+ userful + ", "
+					+ useful + ", "
 					+ cool + ")");
 		}
 		catch (SQLException e) {
@@ -402,15 +403,15 @@ public class SQLWritter {
 		Statement statement;
 		try {
 			statement = conn.createStatement();
-			String s = "INSERT INTO review VALUES ("
-					+ "'" + review_id + "', "
-					+ "'" + business_id + "', "
-					+ "'" + user_id + "', "
-					+ stars + ", "
-					+ "'" + date + "', "
-					+ "'" + text + "', "
-					+ "'" + type + "')";
-			System.out.println(s);
+//			String s = "INSERT INTO review VALUES ("
+//					+ "'" + review_id + "', "
+//					+ "'" + business_id + "', "
+//					+ "'" + user_id + "', "
+//					+ stars + ", "
+//					+ "'" + date + "', "
+//					+ "'" + text + "', "
+//					+ "'" + type + "')";
+//			System.out.println(s);
 			statement.executeUpdate("INSERT INTO review VALUES ("
 					+ "'" + review_id + "', "
 					+ "'" + business_id + "', "
@@ -434,7 +435,7 @@ public class SQLWritter {
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS reviewvotes " 
 					+ "(review_id varchar(255) REFERENCES review(review_id), "
 					+ "funny int, "
-					+ "userful int,"
+					+ "useful int,"
 					+ "cool int)");
 		}
 		catch (SQLException e) {
@@ -444,14 +445,14 @@ public class SQLWritter {
 		return true;
 	}
 	
-	public boolean insertReviewVotesTable(String user_id, int funny, int userful, int cool) {
+	public boolean insertReviewVotesTable(String user_id, int funny, int useful, int cool) {
 		Statement statement;
 		try {
 			statement = conn.createStatement();
 			statement.executeUpdate("INSERT INTO reviewvotes VALUES (" 
 					+ "'" + user_id +"',"
 					+ funny + ", "
-					+ userful + ", "
+					+ useful + ", "
 					+ cool + ")");
 		}
 		catch (SQLException e) {

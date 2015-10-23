@@ -20,7 +20,7 @@ private SQLWritter sqlwritter;
 	public boolean importTips() {
 		BufferedReader reader = null;
 		try{
-			FileInputStream fileInputStream = new FileInputStream("/Users/will/Documents/workspace/ImportYelpData/src/main/resources/yelp_academic_dataset_tip.json");
+			FileInputStream fileInputStream = new FileInputStream(System.getenv("TIPS_PATH"));
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
 			reader = new BufferedReader(inputStreamReader);
 			String tempString = null;
