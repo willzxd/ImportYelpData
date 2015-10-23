@@ -16,16 +16,17 @@ There are lost of instruction on the Internet.
 
 A simple instruction is here:
 
+Install with homebrew:
 `brew install postgresql -v`
 
+Init psql:
 `initdb /usr/local/var/postgres -E utf8`
 
-run psql automatically:
+Run psql automatically:
 ```ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
-
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist```
 
-run qsql
+Run qsql:
 
 `pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start`
 
