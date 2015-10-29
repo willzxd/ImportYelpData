@@ -7,7 +7,7 @@ public class Tips {
 	private String business_id;
 	private String user_id;
 	private String date;
-	private int like;
+	private int likes;
 	
 	public Tips() {
 		
@@ -53,11 +53,11 @@ public class Tips {
 		this.date = date;
 	}
 
-	public int getLike() {
-		return like;
+	public int getLikes() {
+		return likes;
 	}
 
-	public void setLike(int like) {
-		this.like = like;
+	public void setLikes(int likes) {
+		this.likes = likes;
 	}
 }

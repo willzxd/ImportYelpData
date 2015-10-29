@@ -29,7 +29,7 @@ private SQLWritter sqlwritter;
 				ObjectMapper mapper = new ObjectMapper();
 				mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 				Tips tips = mapper.readValue(tempString, Tips.class);
-				sqlwritter.insertTipsTable(tips.getBusiness_id(), tips.getUser_id(), tips.getDate(), tips.getLike(), tips.getText(), tips.getType());
+				sqlwritter.insertTipsTable(tips.getBusiness_id(), tips.getUser_id(), tips.getDate(), tips.getLikes(), tips.getText(), tips.getType());
 			}
 				reader.close();
 				sqlwritter.closeConnection();

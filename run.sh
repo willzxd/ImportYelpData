@@ -2,7 +2,7 @@
 
 rm -r target/
 
-export BUSINESSPATH="/Users/will/Downloads/yelp_dataset_challenge_academic_dataset/yelp_academic_dataset_business.json"
+export BUSINESS_PATH="/Users/will/Downloads/yelp_dataset_challenge_academic_dataset/yelp_academic_dataset_business.json"
 
 export USERS_PATH="/Users/will/Downloads/yelp_dataset_challenge_academic_dataset/yelp_academic_dataset_user.json"
 
