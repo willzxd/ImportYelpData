@@ -1,4 +1,5 @@
-﻿select * from bcategories limit 10;
+﻿/*overview*/
+select * from bcategories limit 10;
 select * from bneighborhoods limit 10;
 select * from business limit 10;
 select * from elite limit 10;
@@ -9,12 +10,14 @@ select * from tips limit 10;
 select * from users limit 10;
 select * from uservotes limit 10;
 
+/*same business in the two category*/
 create view SChrestaurants as
 select distinct A. business_id from
 bcategories as A inner join bcategories as B
 on A.business_id=B.business_id
 where A.category='Chicken Wings' and B.category='Salad';
 
+/*business has categories of restaurants and Salad but do not have Chicken Wings*/
 create view Srestaurants as
 select distinct A. business_id from
 bcategories as A inner join bcategories as B
@@ -22,6 +25,7 @@ on A.business_id=B.business_id
 where A.category='Salad' and B.category='Restaurants'
 and A.business_id not in (select * from SChrestaurants);
 
+/* business has categories of restaurants and Chicken Wings but do not have Salad*/
 create view Chrestaurants as
 select distinct A. business_id from
 bcategories as A inner join bcategories as B
@@ -29,12 +33,14 @@ on A.business_id=B.business_id
 where A.category='Chicken Wings' and B.category='Restaurants'
 and A.business_id not in (select * from SChrestaurants);
 
+/* business has categories of restaurants and Salad */
 create view SrestaurantsF as
 select distinct A. business_id from
 bcategories as A inner join bcategories as B
 on A.business_id=B.business_id
 where A.category='Salad' and B.category='Restaurants';
 
+/* business has categories of restaurants and Chicken Wings*/
 create view ChrestaurantsF as
 select distinct A. business_id from
 bcategories as A inner join bcategories as B
@@ -99,11 +105,16 @@ select count(*) from elite where user_id in (select * from Chusers); /*5680*/
 select avg(year) from elite where user_id in (select * from Susers); /*2012.4126933503428480*/
 select avg(year) from elite where user_id in (select * from Chusers); /*2012.4269366197183099*/
 /*<-------------Similar---------------->*/
+/* not very useful */
 
 /*4.review cool/useful/funny*/
 select sum(funny) as funny_sum, sum(userful) as useful_sum, sum(cool) as cool_sum from reviewvotes where review_id in (select review_id from review where business_id in (select * from Srestaurants)) 
 /*4850;11732;6583*/
-
+select avg(funny) as funny_avg, avg(useful) as useful_avg, avg(cool) as cool_avg 
+from reviewvotes 
+where review_id in 
+(select review_id from review where business_id in (select * from Srestaurants))
+/*do it avg*/
 select sum(funny) as funny_sum, sum(userful) as useful_sum, sum(cool) as cool_sum from reviewvotes where review_id in (select review_id from review where business_id in (select * from Chrestaurants)) 
 /*5456;10956;5706*/
 /*<---------------ambiguous------------>*/
@@ -119,6 +130,14 @@ select avg(funny) as funny_avg, avg(userful) as useful_avg, avg(cool) as cool_av
 
 /*DIFFERENCE TWOOOOOOOOOOOOOOOOOOOOOOOOO*/
 /*6.review date*/
+create view elite_yearss as select A.user_id, count(year) as yearsum from elite as A, Susers as B where A.user_id = B.user_id group by A.user_id;
+	select avg(yearsum) from elite_yearss;
+/*3.52*/
+create view elite_yearsc as select A.user_id, count(year) as yearsum from elite as A, Chusers as B where A.user_id = B.user_id group by A.user_id;
+		select avg(yearsum) from elite_yearsc;
+/*3.50*/
+
+
 
 select count(*) from review as A, elite as B where A.user_id=B.user_id and EXTRACT(YEAR FROM A.date)<=B.year and A.business_id in (select * from Srestaurants);
 /*8671*/
