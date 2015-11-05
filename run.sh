@@ -18,6 +18,9 @@ export DB_PASSWORD="yelp"
 
 export DB_CONNECTION="jdbc:postgresql://localhost/"
 
+#update mode only imports the missing part of the last version
+export RUNMODE="update"
+
 
 mvn install
 

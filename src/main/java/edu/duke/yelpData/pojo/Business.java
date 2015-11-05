@@ -1,4 +1,7 @@
 package edu.duke.yelpData.pojo;
+
+import java.util.LinkedHashMap;
+
 /**
  * Pojo Class for Business Data, ignoring open hours and attributes;
  * @author will
@@ -17,6 +20,7 @@ public class Business {
 	private int review_count;
 	private String[] categories;
 	private String open;
+	private LinkedHashMap<String, Object> attributes;
 	
 	public Business() {
 		
@@ -117,6 +121,16 @@ public class Business {
 	public void setOpen(String open) {
 		this.open = open;
 	}
+
+	public LinkedHashMap<String, Object> getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(LinkedHashMap<String, Object> attributes) {
+		this.attributes = attributes;
+	}
+
+	
 	
 }
 //'type': 'business',

@@ -56,6 +56,7 @@ public class SQLWritter {
 		createTipsTable();
 		createReviewTable();
 		createReviewVotesTable();
+		createBusinessAttributesTable();
 		//createCheckInfoTable();
 		System.out.println("All tables have been Created!");
 	}
@@ -65,7 +66,7 @@ public class SQLWritter {
 		Statement statement;
 		try {
 			statement = conn.createStatement();
-			statement.executeUpdate("DROP TABLE IF EXISTS reviewvotes, review, tips, bneighborhoods, bcategories, business, elite, uservotes, friends, users CASCADE");
+			statement.executeUpdate("DROP TABLE IF EXISTS reviewvotes, review, tips, bneighborhoods, bcategories, battributes, business, elite, uservotes, friends, users CASCADE");
 		}
 		catch (SQLException e) {
 			printSQLInformation(e);
@@ -86,9 +87,36 @@ public class SQLWritter {
 		
 	}	
 
-	private void createBusinessAttributesTable() {
-		// TODO Auto-generated method stub
-		
+	private boolean createBusinessAttributesTable() {
+		Statement statement;
+		try {
+			statement = conn.createStatement();
+			statement.executeUpdate("CREATE TABLE IF NOT EXISTS battributes" 
+					+ "(business_id varchar(255) REFERENCES business(business_id), "
+					+ "attribute varchar(255), "
+					+ "value varchar(255))");
+		}
+		catch (SQLException e) {
+			printSQLInformation(e);
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean insertBusinessAttributesTable(String bid, String attr, String value) {
+		Statement statement;
+		try {
+			statement = conn.createStatement();
+			statement.executeUpdate("INSERT INTO battributes(business_id, attribute, value) VALUES(" 
+					+ "'" + bid +"', "
+					+ "'" + attr.replace('\'', '/') +"', "
+					+ "'" + value.replace('\'', '/') +"')");
+		}
+		catch (SQLException e) {
+			printSQLInformation(e);
+			return false;
+		}
+		return true;
 	}
 
 	private void createOpenHoursTable() {
